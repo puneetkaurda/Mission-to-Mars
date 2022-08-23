@@ -36,6 +36,10 @@ def mars_news(browser):
 
    # Optional delay for loading the page
     browser.is_element_present_by_css('div.list_text', wait_time=1)
+    
+    # Convert the browser html to a soup object and then quit the browser
+    html = browser.html
+    news_soup = soup(html, 'html.parser')
 
    # Add try/except for error handling
     try:
@@ -92,7 +96,7 @@ def mars_facts():
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
 
-def hemisphere_scrape(browser) :
+def hemisphere_img(browser) :
     # 1. Use browser to visit the URL 
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
